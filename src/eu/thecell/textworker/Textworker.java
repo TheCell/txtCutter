@@ -16,9 +16,47 @@ public class Textworker
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        TextProcessor txtPrc = new TextProcessor("C:\\Users\\simon\\Desktop\\ImagesList.txt", "C:\\Users\\simon\\Desktop\\newImagesList.txt");
-	txtPrc.cutXLinesEveryYRows(1, 2);
+    public static void main(String[] args)
+    {
+	int skipAfterX = 1;
+	int amountOfLinesToSkip = 0;
+	String source = "";
+	String target = "";
+	
+	for(int i = 0; i < args.length; i++)
+	{
+	    if("-source".equals(args[i]))
+	    {
+		if(!"".equals(args[i+1]))
+		{
+		    source = args[i+1];
+		}
+	    }
+	    if("-target".equals(args[i]))
+	    {
+		if(!"".equals(args[i+1]))
+		{
+		    target = args[i+1];
+		}
+	    }
+	    if("-skipafter".equals(args[i].toLowerCase()))
+	    {
+		if(Integer.getInteger(args[i+1]) != null)
+		{
+		    skipAfterX = Integer.getInteger(args[i+1]);
+		}
+	    }
+	    if("-skipamount".equals(args[i].toLowerCase()))
+	    {
+		if(Integer.getInteger(args[i+1]) != null)
+		{
+		    amountOfLinesToSkip = Integer.getInteger(args[i+1]);
+		}
+	    }
+	}
+	
+        TextProcessor txtPrc = new TextProcessor(source, target);
+	txtPrc.cutXLinesEveryYRows(skipAfterX, amountOfLinesToSkip);
     }
 
 }
