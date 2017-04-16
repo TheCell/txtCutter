@@ -12,7 +12,6 @@ package eu.thecell.textworker;
  */
 public class Textworker
 {
-
     /**
      * @param args the command line arguments
      */
@@ -22,7 +21,7 @@ public class Textworker
 	int amountOfLinesToSkip = 0;
 	String source = "";
 	String target = "";
-	
+
 	for(int i = 0; i < args.length; i++)
 	{
 	    if("-source".equals(args[i]))
@@ -41,20 +40,14 @@ public class Textworker
 	    }
 	    if("-skipafter".equals(args[i].toLowerCase()))
 	    {
-		if(Integer.getInteger(args[i+1]) != null)
-		{
-		    skipAfterX = Integer.getInteger(args[i+1]);
-		}
+		skipAfterX = Integer.parseUnsignedInt(args[i+1]);
 	    }
 	    if("-skipamount".equals(args[i].toLowerCase()))
 	    {
-		if(Integer.getInteger(args[i+1]) != null)
-		{
-		    amountOfLinesToSkip = Integer.getInteger(args[i+1]);
-		}
+		amountOfLinesToSkip = Integer.parseUnsignedInt(args[i+1]);
 	    }
 	}
-	
+
         TextProcessor txtPrc = new TextProcessor(source, target);
 	txtPrc.cutXLinesEveryYRows(skipAfterX, amountOfLinesToSkip);
     }

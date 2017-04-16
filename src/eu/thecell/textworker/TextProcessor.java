@@ -23,23 +23,23 @@ public class TextProcessor
 {
     private String inputFileName;
     private String outputFileName;
-    
+
     public TextProcessor(String inputFileName)
     {
 	this(inputFileName, "");
     }
-    
+
     public TextProcessor(String inputFileName, String outputFileName)
     {
 	this.inputFileName = inputFileName;
 	this.outputFileName = outputFileName;
     }
-    
+
     public void cutXLinesEveryYRows(int skipAfterX, int amountOfLinesToSkip)
     {
 	int currentCount = 0;
 	skipAfterX --;
-	
+
 	if(this.outputFileName.equals(""))
 	{
 	    try (Stream<String> stream = Files.lines(Paths.get(this.inputFileName)))
@@ -98,9 +98,8 @@ public class TextProcessor
 		System.out.println("File could not be found.");
 	    }
 	}
-	
-	
+
 	System.out.println("File Processed.");
-	
+
     }
 }
